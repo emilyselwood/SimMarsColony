@@ -49,7 +49,7 @@ class Hex(object):
         sprite.position = x, y
         return sprite
 
-class MouseDisplay(cocos.layer.Layer)
+class MouseDisplay(cocos.layer.Layer):
     is_event_handler = True
     def on_mouse_press(self, x, y, buttons, modifiers):
         self.posx, self.posy = director.get_virtual_coordinates(x,y)
