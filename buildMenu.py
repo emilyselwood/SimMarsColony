@@ -36,7 +36,7 @@ class BuildMenu(cocos.menu.Menu):
         super(BuildMenu, self).__init__("Click the apple")
         self.buildingInfo_scene = buildingInfo_scene
 
-        CCMenuItem = cocos.menu.ImageMenuItem("ico-res-fd.png", self.onButtonClick)
+        CCMenuItem = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
         self.create_menu([CCMenuItem])
 
     def onButtonClick(self):
