@@ -29,7 +29,7 @@ class BuildSelectScene(cocos.layer.ColorLayer):
                                  font_size=32,
                                  anchor_x='center', anchor_y='center')
         
-        label.position = 320, 240
+        label.position = 320, 140
         self.add(label)
 
         self.update_resource_info()

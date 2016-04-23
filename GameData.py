@@ -54,9 +54,15 @@ class GameData(object):
         }
         self.people = people
         self.map = map
-        map.addGameData(self)
+        self.map.addGameData(self)
         self.current_x = 1
         self.current_y = 0
+
+    def get_build_information(self):
+        v = []
+        for s in tile_information:
+            v.append(tile_information['Habitat'])
+        return v
 
     def build(self, type):
         hex = Map.Hex(self.current_x, self.current_y, tile_information[type])
@@ -65,7 +71,7 @@ class GameData(object):
         if not self.have_enough_stuff(hex.build):
             return False
         # TODO: check the grid is alowed to be built on.
-        # reduce amout of resources
+        # reduce amount of resources
         self.subtract_stuff(hex.build)
 
         # add tile to map
@@ -81,6 +87,7 @@ class GameData(object):
                 self.current_x = 0
                 return True
 
+
     def consume(self):
         result = {}
         # buildings
@@ -88,7 +95,7 @@ class GameData(object):
             v = result.get(key, 0)
             result[key] = v + value
 
-        # consue for people as well
+        # consume for people as well
 
         # check we have enough stuff to survive if not ???
         if not self.have_enough_stuff(result):
@@ -102,7 +109,7 @@ class GameData(object):
         build_details = building_type['build']
         build_energy = build_details.get('energy', 0)
         build_food = build_details.get('food', 0)
-        
+
         build_water = build_details.get('water', 0)
         string = "Build cost is %s energy \n and %s water \n and %s food" % (build_energy, build_water, build_food)
         return string
@@ -113,8 +120,7 @@ class GameData(object):
     def produce(self):
         for key, value in self.map.gained_from_hexes().iteritems():
             self.resources[key] = self.resources[key] + value
-        self.print_resources()
- 
+
     def have_enough_stuff(self, to_remove):
         for key, value in to_remove.iteritems():
             if self.resources[key] - value < 0:
@@ -124,11 +130,12 @@ class GameData(object):
     def subtract_stuff(self, to_remove):
         for key, value in to_remove.iteritems():
             self.resources[key] = self.resources[key] - value
- 
+
 
     def print_resources(self):
         for key, value in self.resources.iteritems():
             print('{key}:{value}'.format(key=key, value=value))
+
 
     def get_resources(self):
         string = ""
