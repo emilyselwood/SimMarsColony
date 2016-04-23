@@ -55,9 +55,12 @@ class GameData(object):
         self.people = people
         self.map = map
         map.addGameData(self)
+        self.current_x = 1
+        self.current_y = 0
 
-    def build(self, type, x, y):
-        hex = Map.Hex(x, y, tile_information[type])
+    def build(self, type):
+        hex = Map.Hex(self.current_x, self.current_y, tile_information[type])
+        self.advance_coordinates()
         # check we have the right materials available to build
         if not self.have_enough_stuff(hex.build):
             return False
@@ -68,6 +71,14 @@ class GameData(object):
         # add tile to map
         self.map.add_hex(hex)
         return True
+
+    def advance_coordinates(self):
+        print("advancing coordinates")
+        if (self.current_x == 1):
+            print("nest 1")
+            if (self.current_y == 0):
+                print("updating y")
+                self.current_y = 1
 
     def consume(self):
         result = {}

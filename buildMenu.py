@@ -85,7 +85,7 @@ class BuildThisMenu(cocos.menu.Menu):
         self.create_menu([build_button])
     
     def onButtonClick(self):
-        self.gamedata.build('Farm', 1, 0)
+        self.gamedata.build('Farm')
         cocos.director.director.run(cocos.scene.Scene(self.map))
 
 class BuildInfoScene(cocos.layer.ColorLayer):
