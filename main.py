@@ -6,11 +6,12 @@ import buildMenu
 cocos.director.director.init()
     
 # Create the scenes
-buildingSelect_scene = cocos.scene.Scene(buildMenu.BuildSelectScene())
-
-map = Map.Map(buildingSelect_scene)
-
+map = Map.Map()
 game_data = GameData.GameData(10, 10, 10, 10, map)
+
+buildingSelect_scene = cocos.scene.Scene(buildMenu.BuildSelectScene(game_data))
+map.addBSS(buildingSelect_scene)
+
 map.add_hex(Map.Hex(0, 0, GameData.tile_information['LaunchPad']))
 
 buildingInfo_scene = cocos.scene.Scene(buildMenu.BuildInfoScene(game_data))

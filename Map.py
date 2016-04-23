@@ -5,12 +5,14 @@ from cocos.director import director
 class Map(cocos.layer.ColorLayer):
     is_event_handler = True
 
-    def __init__(self, buildSelectScene):
+    def __init__(self):
 
         super( Map, self ).__init__(0xCC, 0x86, 0x61, 0xFF)
-        self.build_select_scene = buildSelectScene
 
         self.hexes = []
+    
+    def addBSS(self, buildSelectScene):
+        self.build_select_scene = buildSelectScene
 
 
     def add_hex(self, hex):
