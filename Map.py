@@ -14,6 +14,12 @@ class Map(cocos.layer.ColorLayer):
         self.hexes.append(hex)
         self.add(hex.sprite(), z = 0)
 
+    def produce(self):
+
+
+    def build(self, hexType, x, y):
+        GameData.tile_information['Farm'])
+
 
 class Hex():
 
