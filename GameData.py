@@ -23,7 +23,7 @@ tile_information = {
             'water': 1,
         },
         'produce': {
-            'food': 3,
+            'water': 1,
     }
     },
     'Habitat': {
