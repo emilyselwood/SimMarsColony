@@ -71,6 +71,14 @@ class GameData(object):
         self.subtract_stuff(result)
         return True
 
+    def buildCost(self, type)
+        build_details = type['build']
+        build_energy = build_details['energy']
+        build_water = build_details['water']
+        build_food = build_details['food']
+        string = "Build cost is " + str(build_energy) + " energy and " + str(build_water) + " water and " + str(build_food) + "food"
+        return string
+
     def produce(self):
         for key, value in self.map.gained_from_hexes().iteritems():
             self.resources[key] = self.resources[key] + value
