@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 74 212" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1,0,0,1,-504.096,-46.2264)">
+        <g transform="matrix(1.25021,0,0,1.07648,-326.747,12.367)">
+            <path d="M702.449,36.602C702.449,33.76 700.463,31.454 698.017,31.454L689.152,31.454C686.705,31.454 684.719,33.76 684.719,36.602L684.719,79.019C684.719,81.86 686.705,84.167 689.152,84.167L698.017,84.167C700.463,84.167 702.449,81.86 702.449,79.019L702.449,36.602Z" style="fill:rgb(240,242,238);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-157.979,19.1906)">
+            <ellipse cx="706.879" cy="42.615" rx="8.061" ry="8.015" style="fill:rgb(209,209,209);"/>
+        </g>
+        <g transform="matrix(1.43311,1.12846,-0.362397,0.460235,-453.378,-763.102)">
+            <rect x="711.04" y="38.561" width="1.011" height="9.387" style="fill:black;"/>
+        </g>
+        <g transform="matrix(1,0,0,0.66687,-152.843,69.1748)">
+            <rect x="657.118" y="53.06" width="73.211" height="230.194" style="fill:rgb(209,209,209);"/>
+        </g>
+        <g transform="matrix(1,0,0,1,-158.726,25.9707)">
+            <path d="M699.539,46.493C720.851,46.493 736.308,58.699 736.308,80.359C736.308,102.019 720.851,124.984 699.539,124.984C678.228,124.984 662.822,101.575 662.822,79.915C662.822,79.915 662.822,79.915 662.822,79.915C662.822,58.255 678.228,46.493 699.539,46.493Z" style="fill:rgb(209,209,209);"/>
+        </g>
+        <g transform="matrix(0.23056,-0.00223653,-0.0058783,-0.605981,452.48,336.371)">
+            <path d="M253.224,254.933C253.677,314.931 254.458,355.456 257.474,380.775C260.409,405.425 304.048,419.485 330.853,419.485C355.354,419.485 318.155,408.593 299.416,391.476C299.416,391.476 299.416,391.476 299.416,391.476C275.442,369.578 267.849,343.742 253.224,254.933Z" style="fill:white;"/>
+        </g>
+        <g transform="matrix(7.32002,0,0,7.32002,-4542.7,-973.97)">
+            <text x="690.281px" y="166.161px" style="font-family:'AbadiMT-CondensedExtraBold';font-size:12px;fill:black;">O</text>
+        </g>
+        <g transform="matrix(2.7215,0,0,2.7215,-1324.04,-203.688)">
+            <text x="690.281px" y="166.161px" style="font-family:'AbadiMT-CondensedExtraBold';font-size:12px;fill:black;">2</text>
+        </g>
+    </g>
+</svg>
