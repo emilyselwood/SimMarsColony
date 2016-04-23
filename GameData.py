@@ -14,7 +14,7 @@ tile_information = {
         }
     },
     'LaunchPad' : {
-        'image' : 'assets/hexagon-filled2.png',
+        'image' : 'assets/tile_landingdeck.png',
         'build': {
             'energy': 1,
             'food': 1,
@@ -27,7 +27,7 @@ tile_information = {
     }
     },
     'Habitat': {
-        'image': 'assets/hexagon-filled2.png',
+        'image': 'assets/tile_habitat.png',
         'build': {
             'energy': 1,
             'food': 1,

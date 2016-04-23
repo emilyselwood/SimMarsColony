@@ -20,7 +20,7 @@ class BuildSelectScene(cocos.layer.ColorLayer):
     def __init__(self, gamedata):
         super(BuildSelectScene, self).__init__(230,149,18,255) #constructor
         self.gamedata = gamedata
-        
+
 
         # a cocos.text.Label is a wrapper of pyglet.text.Label
         # with the benefit of being a cocosnode
@@ -28,8 +28,9 @@ class BuildSelectScene(cocos.layer.ColorLayer):
                                  font_name='Times New Roman',
                                  font_size=32,
                                  anchor_x='center', anchor_y='center')
-        
+
         label.position = 320, 140
+
         self.add(label)
 
         self.update_resource_info()
@@ -50,12 +51,14 @@ class BuildMenu(cocos.menu.Menu):
         super(BuildMenu, self).__init__("Click the apple")
         self.buildingInfo_scene = buildingInfo_scene
         self.gamedata = gamedata
-
         #for each building from gamedata create buttons and store in an array
         allMenuItems = []
         for i in GameData.GameData.get_build_information(gamedata):
             allMenuItems.append(cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick))
+
+
         theMenu = self.create_menu(allMenuItems)
+
 
     def onButtonClick(self):
         # self.building_info_scene.set_building_type('Farm')
@@ -67,10 +70,10 @@ class BuildThisMenu(cocos.menu.Menu):
         super(BuildThisMenu, self).__init__()
         self.gamedata = gamedata
         self.map = self.gamedata.map
-        
+
         build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
         self.create_menu([build_button])
-    
+
     def onButtonClick(self):
         self.gamedata.build('Farm')
         cocos.director.director.run(cocos.scene.Scene(self.map))
@@ -87,6 +90,6 @@ class BuildInfoScene(cocos.layer.ColorLayer):
                                  font_name='Times New Roman',
                                  font_size=12,
                                  anchor_x='center', anchor_y='center')
-        
+
         label.position = 320, 240
         self.add(label)
