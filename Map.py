@@ -33,9 +33,16 @@ class MainMap(cocos.layer.ScrollingManager):
 
     def add_hex(self, hex):
         self.hexes.append(hex)
-        oldTile = self.map_loaded['tile_layer_1'].cells[hex.x][hex.y].tile
-        newTile = tiles.Tile(oldTile.id+1, oldTile.properties, pyglet.image.load(hex.image), None)
-        self.map_loaded['tile_layer_1'].cells[hex.x][hex.y].tile = newTile
+        for h in self.hexes:
+            print("{t}:{x}:{y}".format(t=h.image, x = h.x, y = h.y))
+        print
+        cell = self.map_loaded['tile_layer_1'].cells[hex.x][hex.y]
+        print(cell.tile.id)
+        cell.tile = tiles.Tile(cell.tile.id+len(self.hexes), cell.tile.properties, pyglet.image.load(hex.image), None)
+
+        self.map_loaded['tile_layer_1'].set_dirty()
+        print(cell.tile.id)
+        print
 
     def cost_of_hexes(self) :
         return self.for_each_hex('consume')
