@@ -3,7 +3,10 @@ from cocos.director import director
 import cocos.menu
 
 class MouseDisplay(cocos.layer.Layer):
-
+    """
+    Test file for implementing mouse controls
+    Unused in final project
+    """
     is_event_handler = True
 
     def __init__(self):

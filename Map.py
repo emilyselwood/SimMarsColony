@@ -1,5 +1,6 @@
 import cocos
 import GameData
+from cocos.director import director
 
 class Map(cocos.layer.ColorLayer):
 
@@ -47,6 +48,12 @@ class Hex(object):
             y = y + 47
         sprite.position = x, y
         return sprite
+
+class MouseDisplay(cocos.layer.Layer)
+    is_event_handler = True
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        self.posx, self.posy = director.get_virtual_coordinates(x,y)
+        print(x,y)
 
 if __name__ == "__main__":
     cocos.director.director.init()
