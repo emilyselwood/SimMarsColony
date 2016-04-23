@@ -1,20 +1,16 @@
 import cocos
 import GameData
-import buildMenu
 from cocos.director import director
 
 class Map(cocos.layer.ColorLayer):
     is_event_handler = True
 
-    def __init__(self):
+    def __init__(self, buildSelectScene):
 
         super( Map, self ).__init__(0xCC, 0x86, 0x61, 0xFF)
+        self.build_select_scene = buildSelectScene
 
         self.hexes = []
-    
-    def addBSS(self, buildSelectLayer, buildSelectScene):
-        self.build_select_layer = buildSelectLayer
-        self.build_select_scene = buildSelectScene
 
 
     def add_hex(self, hex):
@@ -36,15 +32,7 @@ class Map(cocos.layer.ColorLayer):
         return result
 
     def on_mouse_press(self, x, y, buttons, modifiers):
-        self.game_data.consume()
-        self.game_data.produce()
-        buildingInfo_scene = cocos.scene.Scene(buildMenu.BuildInfoScene(self.game_data))
-        building_select_layer = buildMenu.BuildSelectScene(self.game_data, buildingInfo_scene)
-        buildingSelect_scene = cocos.scene.Scene(building_select_layer)
-        cocos.director.director.run(buildingSelect_scene)
-
-    def addGameData(self, gamedata):
-        self.game_data = gamedata
+        cocos.director.director.run(self.build_select_scene)
 
 class Hex(object):
 
