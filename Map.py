@@ -14,14 +14,16 @@ class Map(cocos.layer.ColorLayer):
         self.hexes.append(hex)
         self.add(hex.sprite(), z = 0)
 
-    def produce(self):
+    def cost_of_hexes(self) :
+        result = {}
+        for hex in self.hexes:
+            for key, value in hex.consume.iteritems():
+                v = result.get(key, 0)
+                result[key] = v + value
+        return result
 
 
-    def build(self, hexType, x, y):
-        GameData.tile_information['Farm'])
-
-
-class Hex():
+class Hex(object):
 
     def __init__(self, x, y, map):
         self.x = x
@@ -48,9 +50,15 @@ if __name__ == "__main__":
 
     #startingHex = UnusedHex(0, 0)
     map.add_hex(Hex(0, 0, GameData.tile_information['Farm']))
-    map.add_hex(Hex(1, 0, GameData.tile_information['Habitat']))
-    map.add_hex(Hex(0, 1, GameData.tile_information['Habitat']))
-    map.add_hex(Hex(1, 1, GameData.tile_information['Farm']))
+
+    game_data = GameData.GameData(10, 10, 10, 10, map)
+    game_data.print_resources()
+    print("building farm")
+    game_data.build('Farm', 1, 0)
+    game_data.print_resources()
+    print("Consuming resources")
+    game_data.consume()
+    game_data.print_resources()
 
 
     cocos.director.director.run (cocos.scene.Scene (map ) )
