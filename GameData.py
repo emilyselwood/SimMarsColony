@@ -33,15 +33,12 @@ tile_information = {
 
 class GameData(object):
 
-    def __init__(self):
-        self.habitatmaterial = 4
-        self.habitats = 0
-        self.habitatcost = 2
-        self.habitatproductivity = 2
-
-    def setHabitatMaterial(self, n):
-        self.habitatmaterial = n
-
+    def __init__(self, energy, water, food):
+        self.energy = energy
+        self.water = water
+        self.food = food
+        self.tiles = []
+ 
     def addHabitatMaterial(self, n):
         self.habitatmaterial = self.habitatmaterial + int(n)
 
