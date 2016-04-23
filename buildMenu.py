@@ -41,15 +41,28 @@ class BuildMenu(cocos.menu.Menu):
     def onButtonClick(self):
         cocos.director.director.run(self.buildingInfo_scene)
 
+class BuildThisMenu(cocos.menu.Menu):
+    def __init__(self, map):
+        super(BuildThisMenu, self).__init__("Build")
+        self.map = map
+        
+        build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
+        self.create_menu([build_button])
+    
+    def onButtonClick(self):
+        cocos.director.director.run(cocos.scene.Scene(self.map))
+
 class BuildInfoScene(cocos.layer.ColorLayer):
 
     def __init__(self, gamedata):
         super(BuildInfoScene, self).__init__(64,64,224,255) #constructor
+        self.gamedata = gamedata
         gs_string = gamedata.buildCost('Farm')
+        self.add(BuildThisMenu(self.gamedata.getMap()))
 
         label = cocos.text.Label(gs_string,
                                  font_name='Times New Roman',
-                                 font_size=32,
+                                 font_size=12,
                                  anchor_x='center', anchor_y='center')
         
         label.position = 320, 240
