@@ -36,11 +36,23 @@ class BuildMenu(cocos.menu.Menu):
         super(BuildMenu, self).__init__("Click the apple")
         self.buildingInfo_scene = buildingInfo_scene
 
-        CCMenuItem = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
-        self.create_menu([CCMenuItem])
+        menuItem1 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
+        menuItem2 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
+        menuItem3 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
+        menuItem4 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
+        menuItem5 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
+        menuItem6 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
+        
+
+        self.create_menu([menuItem1,menuItem2,menuItem3,menuItem4,menuItem5,menuItem6])
 
     def onButtonClick(self):
         cocos.director.director.run(self.buildingInfo_scene)
+
+
+
+
+
 
 class BuildThisMenu(cocos.menu.Menu):
     def __init__(self, gamedata):
