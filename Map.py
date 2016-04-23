@@ -11,11 +11,12 @@ class Map(cocos.layer.ColorLayer):
         super( Map, self ).__init__(0xCC, 0x86, 0x61, 0xFF)
 
         self.hexes = []
-    
+
+
+
     def addBSS(self, buildSelectLayer, buildSelectScene):
         self.build_select_layer = buildSelectLayer
         self.build_select_scene = buildSelectScene
-
 
     def add_hex(self, hex):
         self.hexes.append(hex)
@@ -39,12 +40,13 @@ class Map(cocos.layer.ColorLayer):
         self.game_data.consume()
         self.game_data.produce()
         buildingInfo_scene = cocos.scene.Scene(buildMenu.BuildInfoScene(self.game_data))
-        building_select_layer = buildMenu.BuildSelectScene(self.game_data, buildingInfo_scene)
+        building_select_layer = buildMenu.BuildSelectScene(self.game_data)
         buildingSelect_scene = cocos.scene.Scene(building_select_layer)
         cocos.director.director.run(buildingSelect_scene)
 
     def addGameData(self, gamedata):
         self.game_data = gamedata
+
 
 class Hex(object):
 

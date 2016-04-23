@@ -17,7 +17,7 @@ import Map
 
 class BuildSelectScene(cocos.layer.ColorLayer):
 
-    def __init__(self, gamedata, buildingInfo_scene):
+    def __init__(self, gamedata):
         super(BuildSelectScene, self).__init__(230,149,18,255) #constructor
         self.gamedata = gamedata
 
@@ -58,6 +58,7 @@ class BuildMenu(cocos.menu.Menu):
         theMenu = self.create_menu(allMenuItems)
 
     def onButtonClick(self):
+        # self.building_info_scene.set_building_type('Farm')
         cocos.director.director.run(self.buildingInfo_scene)
 
 
