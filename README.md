@@ -1,4 +1,4 @@
-# SimMarsColeny
+# SimMarsColony
 
 Space apps 2016 project at Exeter
 
