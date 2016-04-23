@@ -23,7 +23,7 @@ tile_information = {
             'water': 1,
         },
         'produce': {
-            'food': 3,
+            'water': 1,
     }
     },
     'Habitat': {
@@ -54,6 +54,9 @@ class GameData(object):
         }
         self.people = people
         self.map = map
+        self.map.addGameData(self)
+        self.current_x = 1
+        self.current_y = 0
 
     def get_build_information(self):
         v = []
@@ -61,8 +64,9 @@ class GameData(object):
             v.append(tile_information['Habitat'])
         return v
 
-    def build(self, type, x, y):
-        hex = Map.Hex(x, y, tile_information[type])
+    def build(self, type):
+        hex = Map.Hex(self.current_x, self.current_y, tile_information[type])
+        self.advance_coordinates()
         # check we have the right materials available to build
         if not self.have_enough_stuff(hex.build):
             return False
@@ -73,6 +77,16 @@ class GameData(object):
         # add tile to map
         self.map.add_hex(hex)
         return True
+
+    def advance_coordinates(self):
+        if (self.current_x == 1):
+            if (self.current_y == 0):
+                self.current_y = 1
+                return True
+            if (self.current_y == 1):
+                self.current_x = 0
+                return True
+
 
     def consume(self):
         result = {}
@@ -122,16 +136,9 @@ class GameData(object):
         for key, value in self.resources.iteritems():
             print('{key}:{value}'.format(key=key, value=value))
 
-    def addHabitatMaterial(self, n):
-        self.habitatmaterial = self.habitatmaterial + int(n)
 
-    def getHabitatMaterial(self):
-        return self.habitatmaterial
-
-    def getHabitats(self):
-        return self.habitats
-
-    def makeHabitats(self, number):
-        n = int(number)
-        self.habitatmaterial = self.habitatmaterial - n*self.habitatcost
-        self.habitats = self.habitats + n
+    def get_resources(self):
+        string = ""
+        for key, value in self.resources.iteritems():
+            string = string + key + ":" + str(value) + " "
+        return string
