@@ -1,19 +1,36 @@
 import cocos
 import GameData
 from cocos.director import director
+from cocos.scene import Scene
+from cocos import tiles
 
-class Map(cocos.layer.ColorLayer):
+import pyglet
+from pyglet.window import key
+
+class MainMap(cocos.layer.ScrollingManager):
 
     def __init__(self):
 
-        super( Map, self ).__init__(0xCC, 0x86, 0x61, 0xFF)
+        super( MainMap, self ).__init__()
+        self.map_loaded = tiles.load('background_map.tmx')
 
+        layer = self.map_loaded['tile_layer_1']
+        #layer.cells[1][1].tile.image = pyglet.image.load('assets/tile_oxygen.png')
+        print("{map_width}:{map_height}".format(map_width = len(self.map_loaded['tile_layer_1'].cells), map_height = len(self.map_loaded['tile_layer_1'].cells[0])))
+
+        for x in layer.cells:
+            for cell in x:
+                print("size:{width}:{image}".format(width = cell.center, image = cell.tile.image))
+
+        self.add(self.map_loaded['tile_layer_1'], z = 0)
         self.hexes = []
 
 
     def add_hex(self, hex):
         self.hexes.append(hex)
-        self.add(hex.sprite(), z = 0)
+        oldTile = self.map_loaded['tile_layer_1'].cells[hex.x][hex.y].tile
+        newTile = tiles.Tile(oldTile.id+1, oldTile.properties, pyglet.image.load(hex.image), None)
+        self.map_loaded['tile_layer_1'].cells[hex.x][hex.y].tile = newTile
 
     def cost_of_hexes(self) :
         return self.for_each_hex('consume')
@@ -28,7 +45,6 @@ class Map(cocos.layer.ColorLayer):
                 v = result.get(key, 0)
                 result[key] = v + value
         return result
-
 class Hex(object):
 
     def __init__(self, x, y, map):
@@ -56,9 +72,9 @@ class MouseDisplay(cocos.layer.Layer):
         print(x,y)
 
 if __name__ == "__main__":
-    cocos.director.director.init()
+    director.init(width=800, height=600, autoscale=False, resizable=True)
 
-    map = Map()
+    map = MainMap()
 
     #startingHex = UnusedHex(0, 0)
     map.add_hex(Hex(0, 0, GameData.tile_information['Farm']))
@@ -77,4 +93,7 @@ if __name__ == "__main__":
     game_data.print_resources()
 
 
-    cocos.director.director.run (cocos.scene.Scene (map ) )
+    keyboard = key.KeyStateHandler()
+    director.window.push_handlers(keyboard)
+
+    director.run (Scene (map ) )

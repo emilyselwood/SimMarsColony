@@ -4,11 +4,11 @@ import Map
 import buildMenu
 
 cocos.director.director.init()
-    
+
 # Create the scenes
 buildingSelect_scene = cocos.scene.Scene(buildMenu.BuildSelectScene())
 
-map = Map.Map()
+map = Map.MainMap()
 
 game_data = GameData.GameData(10, 10, 10, 10, map)
 

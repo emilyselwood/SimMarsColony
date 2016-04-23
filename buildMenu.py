@@ -27,7 +27,7 @@ class BuildSelectScene(cocos.layer.ColorLayer):
                                  font_name='Times New Roman',
                                  font_size=32,
                                  anchor_x='center', anchor_y='center')
-        
+
         label.position = 320, 240
         self.add(label)
 
@@ -36,7 +36,7 @@ class BuildMenu(cocos.menu.Menu):
         super(BuildMenu, self).__init__("Click the apple")
         self.buildingInfo_scene = buildingInfo_scene
 
-        CCMenuItem = cocos.menu.ImageMenuItem("ico-res-fd.png", self.onButtonClick)
+        CCMenuItem = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
         self.create_menu([CCMenuItem])
 
     def onButtonClick(self):
@@ -47,10 +47,10 @@ class BuildThisMenu(cocos.menu.Menu):
         super(BuildThisMenu, self).__init__()
         self.gamedata = gamedata
         self.map = self.gamedata.map
-        
+
         build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
         self.create_menu([build_button])
-    
+
     def onButtonClick(self):
         self.map.add_hex(Map.Hex(0, 0, GameData.tile_information['Farm']))
         self.gamedata.build('Farm', 1, 0)
@@ -68,6 +68,6 @@ class BuildInfoScene(cocos.layer.ColorLayer):
                                  font_name='Times New Roman',
                                  font_size=12,
                                  anchor_x='center', anchor_y='center')
-        
+
         label.position = 320, 240
         self.add(label)
