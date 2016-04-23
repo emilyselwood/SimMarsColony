@@ -53,11 +53,14 @@ class BuildMenu(cocos.menu.Menu):
         self.gamedata = gamedata
         #for each building from gamedata create buttons and store in an array
         allMenuItems = []
-        for i in GameData.GameData.get_build_information(gamedata):
-            allMenuItems.append(cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick))
 
+        #
+        for k, i in GameData.GameData.get_build_information(gamedata).iteritems():
+            print(i)
+            allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick))
+            
 
-        theMenu = self.create_menu(allMenuItems)
+        self.create_menu(allMenuItems)
 
 
     def onButtonClick(self):
