@@ -71,12 +71,12 @@ class GameData(object):
         self.subtract_stuff(result)
         return True
 
-    def buildCost(self, type)
-        build_details = type['build']
+    def buildCost(self, type):
+        building = tile_information[type]
+        build_details = building['build']
         build_energy = build_details['energy']
-        build_water = build_details['water']
         build_food = build_details['food']
-        string = "Build cost is " + str(build_energy) + " energy and " + str(build_water) + " water and " + str(build_food) + "food"
+        string = "Build cost is " + str(build_energy) + " energy \n and " + str(0) + " water \n and " + str(build_food) + "food"
         return string
 
     def produce(self):

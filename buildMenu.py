@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 #
 
 import cocos
+import GameData
 
 
 class BuildSelectScene(cocos.layer.ColorLayer):
@@ -30,39 +31,26 @@ class BuildSelectScene(cocos.layer.ColorLayer):
         self.add(label)
 
 class BuildMenu(cocos.menu.Menu):
-    def __init__(self):
+    def __init__(self, buildingInfo_scene):
         super(BuildMenu, self).__init__("Click the apple")
+        self.buildingInfo_scene = buildingInfo_scene
 
         CCMenuItem = cocos.menu.ImageMenuItem("ico-res-fd.png", self.onButtonClick)
         self.create_menu([CCMenuItem])
 
     def onButtonClick(self):
-        cocos.director.director.run(buildingInfo_scene)
+        cocos.director.director.run(self.buildingInfo_scene)
 
 class BuildInfoScene(cocos.layer.ColorLayer):
 
-    def __init__(self):
+    def __init__(self, gamedata):
         super(BuildInfoScene, self).__init__(64,64,224,255) #constructor
+        gs_string = gamedata.buildCost('Farm')
 
-        label = cocos.text.Label('Scene 2',
+        label = cocos.text.Label(gs_string,
                                  font_name='Times New Roman',
                                  font_size=32,
                                  anchor_x='center', anchor_y='center')
         
         label.position = 320, 240
         self.add(label)
-        
-if __name__ == "__main__":
-    # director init takes the same arguments as pyglet.window
-    cocos.director.director.init()
-
-    # Create the scenes
-    buildingSelect_scene = cocos.scene.Scene(BuildSelectScene())
-    buildingSelect_scene.add(BuildMenu())
-    buildingInfo_scene = cocos.scene.Scene(BuildInfoScene())
-
-    # And now, start the application, starting with main_scene
-    cocos.director.director.run(buildingSelect_scene)
-
-    # or you could have written, without so many comments:
-    #      director.run( cocos.scene.Scene( HelloWorld() ) )
