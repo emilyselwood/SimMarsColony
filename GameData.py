@@ -72,8 +72,7 @@ class GameData(object):
         return True
 
     def buildCost(self, type):
-        building = tile_information[type]
-        build_details = building['build']
+        build_details = type['build']
         build_energy = build_details['energy']
         build_food = build_details['food']
         string = "Build cost is " + str(build_energy) + " energy \n and " + str(0) + " water \n and " + str(build_food) + "food"
