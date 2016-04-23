@@ -73,12 +73,13 @@ class GameData(object):
         return True
 
     def advance_coordinates(self):
-        print("advancing coordinates")
         if (self.current_x == 1):
-            print("nest 1")
             if (self.current_y == 0):
-                print("updating y")
                 self.current_y = 1
+                return True
+            if (self.current_y == 1):
+                self.current_x = 0
+                return True
 
     def consume(self):
         result = {}
