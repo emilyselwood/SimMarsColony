@@ -1,7 +1,7 @@
 import Map
 tile_information = {
     'Farm': {
-        'image': 'assets/hexagon-filled2.png',
+        'image': 'assets/tile_farm.png',
         'build': {
             'energy': 1,
             'food': 1,
@@ -78,7 +78,7 @@ class GameData(object):
         build_food = build_details['food']
         string = "Build cost is " + str(build_energy) + " energy \n and " + str(0) + " water \n and " + str(build_food) + "food"
         return string
-    
+
     def getMap(self):
         return self.map
 
