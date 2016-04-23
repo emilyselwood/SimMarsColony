@@ -18,7 +18,7 @@ import Map
 
 class BuildSelectScene(cocos.layer.ColorLayer):
 
-    def __init__(self, gamedata):
+    def __init__(self, gamedata, buildingInfo_scene):
         super(BuildSelectScene, self).__init__(230,149,18,255) #constructor
         self.gamedata = gamedata
 
@@ -32,12 +32,18 @@ class BuildSelectScene(cocos.layer.ColorLayer):
         label.position = 320, 240
         self.add(label)
 
-        resource_label = cocos.text.Label(self.gamedata.get_resources(),
+        self.update_resource_info()
+        self.add(self.resource_label)
+        self.add(BuildMenu(buildingInfo_scene))
+
+
+    def update_resource_info(self):
+        self.resource_label = cocos.text.Label(self.gamedata.get_resources(),
                                           font_name='Times New Roman',
                                           font_size=32,
                                           anchor_x='center', anchor_y='center')
-        resource_label.position = 320, 120
-        self.add(resource_label)
+        self.resource_label.position = 320, 120
+
 
 
 class BuildMenu(cocos.menu.Menu):
