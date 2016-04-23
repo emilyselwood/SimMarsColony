@@ -40,7 +40,7 @@ class Farm(Hex):
         Hex.__init__(self, x, y, 'hexagon-filled2.png')
 
 class PowerStation(Hex):
-    def __init(self, x, y):
+    def __init__(self, x, y):
         Hex.__init__(self, x, y, 'hexagon-filled2.png')
 
 
