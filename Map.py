@@ -13,16 +13,15 @@ class MainMap(cocos.layer.ScrollingManager):
 
     def __init__(self, buildSelectScene):
 
-
         super( MainMap, self ).__init__()
-        self.map_loaded = tiles.load('background_map.tmx')
-
-        layer = self.map_loaded['tile_layer_1']
-        #layer.cells[1][1].tile.image = pyglet.image.load('assets/tile_oxygen.png')
-
         self.build_select_scene = buildSelectScene
 
-        self.add(self.map_loaded['tile_layer_1'], z = 0)
+        self.map_loaded = tiles.load('background_map.tmx')['tile_layer_1']
+
+        self.add(self.map_loaded, z = 0)
+        center = self.map_loaded.cells[10][7].center
+        self.map_loaded.set_view(5, 5, 15, 15, 0, 0)
+        self.set_focus(center[0], center[1])
         self.hexes = []
 
 
@@ -33,16 +32,10 @@ class MainMap(cocos.layer.ScrollingManager):
 
     def add_hex(self, hex):
         self.hexes.append(hex)
-        for h in self.hexes:
-            print("{t}:{x}:{y}".format(t=h.image, x = h.x, y = h.y))
-        print
-        cell = self.map_loaded['tile_layer_1'].cells[hex.x][hex.y]
-        print(cell.tile.id)
+        cell = self.map_loaded.cells[hex.x][hex.y]
         cell.tile = tiles.Tile(cell.tile.id+len(self.hexes), cell.tile.properties, pyglet.image.load(hex.image), None)
+        self.map_loaded.set_dirty()
 
-        self.map_loaded['tile_layer_1'].set_dirty()
-        print(cell.tile.id)
-        print
 
     def cost_of_hexes(self) :
         return self.for_each_hex('consume')
