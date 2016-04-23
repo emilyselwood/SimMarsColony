@@ -87,9 +87,11 @@ class GameData(object):
     def buildCost(self, type):
         building_type = tile_information[type]
         build_details = building_type['build']
-        build_energy = build_details['energy']
-        build_food = build_details['food']
-        string = "Build cost is " + str(build_energy) + " energy \n and " + str(0) + " water \n and " + str(build_food) + "food"
+        build_energy = build_details.get('energy', 0)
+        build_food = build_details.get('food', 0)
+        
+        build_water = build_details.get('water', 0)
+        string = "Build cost is %s energy \n and %s water \n and %s food" % (build_energy, build_water, build_food)
         return string
 
     def getMap(self):
