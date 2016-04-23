@@ -13,6 +13,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 
 import cocos
 import GameData
+import Map
 
 
 class BuildSelectScene(cocos.layer.ColorLayer):
@@ -42,14 +43,17 @@ class BuildMenu(cocos.menu.Menu):
         cocos.director.director.run(self.buildingInfo_scene)
 
 class BuildThisMenu(cocos.menu.Menu):
-    def __init__(self, map):
-        super(BuildThisMenu, self).__init__("Build")
-        self.map = map
+    def __init__(self, gamedata):
+        super(BuildThisMenu, self).__init__()
+        self.gamedata = gamedata
+        self.map = self.gamedata.map
         
         build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
         self.create_menu([build_button])
     
     def onButtonClick(self):
+        self.map.add_hex(Map.Hex(0, 0, GameData.tile_information['Farm']))
+        self.gamedata.build('Farm', 1, 0)
         cocos.director.director.run(cocos.scene.Scene(self.map))
 
 class BuildInfoScene(cocos.layer.ColorLayer):
@@ -57,8 +61,8 @@ class BuildInfoScene(cocos.layer.ColorLayer):
     def __init__(self, gamedata):
         super(BuildInfoScene, self).__init__(64,64,224,255) #constructor
         self.gamedata = gamedata
-        gs_string = gamedata.buildCost('Farm')
-        self.add(BuildThisMenu(self.gamedata.getMap()))
+        gs_string = self.gamedata.buildCost('Farm')
+        self.add(BuildThisMenu(self.gamedata))
 
         label = cocos.text.Label(gs_string,
                                  font_name='Times New Roman',
