@@ -71,6 +71,9 @@ class GameData(object):
         self.subtract_stuff(result)
         return True
 
+    def produce(self):
+        for key, value in self.map.gained_from_hexes().iteritems():
+            self.resources[key] = self.resources[key] + value
 
     def have_enough_stuff(self, to_remove):
         for key, value in to_remove.iteritems():
@@ -100,6 +103,3 @@ class GameData(object):
         n = int(number)
         self.habitatmaterial = self.habitatmaterial - n*self.habitatcost
         self.habitats = self.habitats + n
-
-    def produce(self):
-        self.habitatmaterial = self.habitatmaterial + self.habitats*self.habitatproductivity

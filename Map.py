@@ -15,13 +15,18 @@ class Map(cocos.layer.ColorLayer):
         self.add(hex.sprite(), z = 0)
 
     def cost_of_hexes(self) :
+        return self.for_each_hex('consume')
+
+    def gained_from_hexes(self):
+        return self.for_each_hex('produce')
+
+    def for_each_hex(self, value_map):
         result = {}
         for hex in self.hexes:
-            for key, value in hex.consume.iteritems():
+            for key, value in getattr(hex, value_map).iteritems():
                 v = result.get(key, 0)
                 result[key] = v + value
         return result
-
 
 class Hex(object):
 
@@ -58,6 +63,10 @@ if __name__ == "__main__":
     game_data.print_resources()
     print("Consuming resources")
     game_data.consume()
+    game_data.print_resources()
+
+    print("Produce resources")
+    game_data.produce()
     game_data.print_resources()
 
 
