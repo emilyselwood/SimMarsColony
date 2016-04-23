@@ -24,4 +24,4 @@ class GameData(object):
         self.habitats = self.habitats + n
 
     def produce(self):
-        self.habitatalmaterial = self.habitatmaterial + self.habitats*self.habitatproductivity
+        self.habitatmaterial = self.habitatmaterial + self.habitats*self.habitatproductivity
