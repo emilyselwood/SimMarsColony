@@ -1,7 +1,7 @@
 class GameData(object):
 
     def __init__(self):
-        self.habitatmaterial = 0
+        self.habitatmaterial = 4
         self.habitats = 0
         self.habitatcost = 2
         self.habitatproductivity = 2
