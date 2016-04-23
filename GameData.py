@@ -72,11 +72,15 @@ class GameData(object):
         return True
 
     def buildCost(self, type):
-        build_details = type['build']
+        building_type = tile_information[type]
+        build_details = building_type['build']
         build_energy = build_details['energy']
         build_food = build_details['food']
         string = "Build cost is " + str(build_energy) + " energy \n and " + str(0) + " water \n and " + str(build_food) + "food"
         return string
+    
+    def getMap(self):
+        return self.map
 
     def produce(self):
         for key, value in self.map.gained_from_hexes().iteritems():
