@@ -15,7 +15,6 @@ import cocos
 import GameData
 import Map
 
-
 class BuildSelectScene(cocos.layer.ColorLayer):
 
     def __init__(self, gamedata, buildingInfo_scene):
@@ -34,7 +33,7 @@ class BuildSelectScene(cocos.layer.ColorLayer):
 
         self.update_resource_info()
         self.add(self.resource_label)
-        self.add(BuildMenu(buildingInfo_scene))
+        self.add(BuildMenu(buildingInfo_scene,gamedata))
 
 
     def update_resource_info(self):
@@ -45,34 +44,21 @@ class BuildSelectScene(cocos.layer.ColorLayer):
         self.resource_label.position = 320, 120
 
 
-
 class BuildMenu(cocos.menu.Menu):
-    def __init__(self, buildingInfo_scene):
+    def __init__(self, buildingInfo_scene,gamedata):
         super(BuildMenu, self).__init__("Click the apple")
         self.buildingInfo_scene = buildingInfo_scene
+        self.gamedata = gamedata
 
-        menuItem1 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
-        menuItem2 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
-        menuItem3 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
-        menuItem4 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
-        menuItem5 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
-        menuItem6 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
-        
-        #for each (building in the buildings from gamedata)
-        #
-        # create a menu item and add to $allMenuItems
-        #
-        # self.create_menu([$allMenuItems])
-        #
+        #for each building from gamedata create buttons and store in an array
+        allMenuItems = []
+        for i in GameData.GameData.get_build_information(gamedata):
+            allMenuItems.append(cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick))
 
-        self.create_menu([menuItem1,menuItem2,menuItem3,menuItem4,menuItem5,menuItem6])
+        theMenu = self.create_menu(allMenuItems)
 
     def onButtonClick(self):
         cocos.director.director.run(self.buildingInfo_scene)
-
-
-
-
 
 
 class BuildThisMenu(cocos.menu.Menu):

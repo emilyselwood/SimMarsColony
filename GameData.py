@@ -42,11 +42,6 @@ tile_information = {
     }
 }
 
-v = []
-for s in tile_information:
-    v.append(tile_information['Habitat']['image'])
-print(v)
-
 class GameData(object):
 
     def __init__(self, energy, water, food, people, map):
@@ -60,6 +55,12 @@ class GameData(object):
         map.addGameData(self)
         self.current_x = 1
         self.current_y = 0
+
+    def get_build_information(self):
+        v = []
+        for s in tile_information:
+            v.append(s)
+        return v
 
     def build(self, type):
         hex = Map.Hex(self.current_x, self.current_y, tile_information[type])
