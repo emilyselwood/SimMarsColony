@@ -31,7 +31,7 @@ class Map(cocos.layer.ColorLayer):
                 result[key] = v + value
         return result
 
-    def on_most_press(self, x, y, buttons, modifiers):
+    def on_mouse_press(self, x, y, buttons, modifiers):
         cocos.director.director.run(self.build_select_scene)
 
 class Hex(object):
