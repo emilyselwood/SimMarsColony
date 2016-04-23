@@ -14,7 +14,7 @@ tile_information = {
         }
     },
     'LaunchPad' : {
-        'image' : 'assets/tile_landingdeck.png',
+        'image' : 'assets/hexagon-filled2.png',
         'build': {
             'energy': 1,
             'food': 1,
@@ -27,7 +27,7 @@ tile_information = {
     }
     },
     'Habitat': {
-        'image': 'assets/tile_habitat.png',
+        'image': 'assets/hexagon-filled2.png',
         'build': {
             'energy': 1,
             'food': 1,
@@ -42,6 +42,11 @@ tile_information = {
     }
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/master
 class GameData(object):
 
     def __init__(self, energy, water, food, people, map):
@@ -59,7 +64,11 @@ class GameData(object):
     def get_build_information(self):
         v = []
         for s in tile_information:
+<<<<<<< HEAD
             v.append(s)
+=======
+            v.append(tile_information['Habitat'])
+>>>>>>> origin/master
         return v
 
     def build(self, type):
