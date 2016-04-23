@@ -52,7 +52,6 @@ class BuildThisMenu(cocos.menu.Menu):
         self.create_menu([build_button])
     
     def onButtonClick(self):
-        self.map.add_hex(Map.Hex(0, 0, GameData.tile_information['Farm']))
         self.gamedata.build('Farm', 1, 0)
         cocos.director.director.run(cocos.scene.Scene(self.map))
 

@@ -13,6 +13,19 @@ tile_information = {
             'food': 3,
         }
     },
+    'LaunchPad' : {
+        'image' : 'assets/hexagon-filled2.png',
+        'build': {
+            'energy': 1,
+            'food': 1,
+        },
+        'consume': {
+            'water': 1,
+        },
+        'produce': {
+            'food': 3,
+    }
+    },
     'Habitat': {
         'image': 'assets/hexagon-filled2.png',
         'build': {

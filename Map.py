@@ -64,26 +64,3 @@ class MouseDisplay(cocos.layer.Layer):
         # self.posx, self.posy = director.get_virtual_coordinates(x,y)
         # print(x,y)
 
-if __name__ == "__main__":
-    cocos.director.director.init()
-
-    map = Map()
-
-    #startingHex = UnusedHex(0, 0)
-    map.add_hex(Hex(0, 0, GameData.tile_information['Farm']))
-
-    game_data = GameData.GameData(10, 10, 10, 10, map)
-    game_data.print_resources()
-    print("building farm")
-    game_data.build('Farm', 1, 0)
-    game_data.print_resources()
-    print("Consuming resources")
-    game_data.consume()
-    game_data.print_resources()
-
-    print("Produce resources")
-    game_data.produce()
-    game_data.print_resources()
-
-
-    cocos.director.director.run (cocos.scene.Scene (map ) )
