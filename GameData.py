@@ -39,6 +39,20 @@ tile_information = {
             'energy': 2,
         }
 
+    },
+    'CommsTower': {
+        'image': 'assets/tile_comms.png',
+        'build': {
+            'energy': 1,
+            'food': 1,
+        },
+        'consume': {
+            'energy': 2,
+        },
+        'produce': {
+            'energy': 2,
+        }
+
     }
 }
 
@@ -57,9 +71,9 @@ class GameData(object):
         self.current_y = 0
 
     def get_build_information(self):
-        v = []
-        for s in tile_information:
-            v.append(s)
+        v = {}
+        for k, value in tile_information.iteritems():
+            v[k] = value
         return v
 
     def build(self, type):
