@@ -58,6 +58,12 @@ class BuildMenu(cocos.menu.Menu):
         menuItem5 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
         menuItem6 = cocos.menu.ImageMenuItem("assets/ico-res-fd.png", self.onButtonClick)
         
+        #for each (building in the buildings from gamedata)
+        #
+        # create a menu item and add to $allMenuItems
+        #
+        # self.create_menu([$allMenuItems])
+        #
 
         self.create_menu([menuItem1,menuItem2,menuItem3,menuItem4,menuItem5,menuItem6])
 
