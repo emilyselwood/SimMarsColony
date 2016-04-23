@@ -71,7 +71,7 @@ class GameData(object):
         self.subtract_stuff(result)
         return True
 
-    def buildCost(self, type)
+    def buildCost(self, type):
         build_details = type['build']
         build_energy = build_details['energy']
         build_water = build_details['water']
