@@ -1,4 +1,5 @@
 import cocos
+import GameData
 
 class Map(cocos.layer.ColorLayer):
 
@@ -16,10 +17,13 @@ class Map(cocos.layer.ColorLayer):
 
 class Hex():
 
-    def __init__(self, x, y, image):
+    def __init__(self, x, y, map):
         self.x = x
         self.y = y
-        self.image = image
+        self.image = map['image']
+        self.build = map['build']
+        self.consume = map['consume']
+        self.produce = map['produce']
 
     def sprite(self):
         sprite = cocos.sprite.Sprite(self.image)
@@ -31,29 +35,16 @@ class Hex():
         sprite.position = x, y
         return sprite
 
-class LaunchPad(Hex):
-    def __init__(self, x, y):
-        Hex.__init__(self, x, y, 'hexagon-filled2.png')
-
-class Farm(Hex):
-    def __init__(self, x, y):
-        Hex.__init__(self, x, y, 'hexagon-filled2.png')
-
-class PowerStation(Hex):
-    def __init__(self, x, y):
-        Hex.__init__(self, x, y, 'hexagon-filled2.png')
-
-
 if __name__ == "__main__":
     cocos.director.director.init()
 
     map = Map()
 
     #startingHex = UnusedHex(0, 0)
-    map.add_hex(LaunchPad(0, 0))
-    map.add_hex(Farm(1, 0))
-    map.add_hex(Farm(0, 1))
-    map.add_hex(PowerStation(1, 1))
+    map.add_hex(Hex(0, 0, GameData.tile_information['Farm']))
+    map.add_hex(Hex(1, 0, GameData.tile_information['Habitat']))
+    map.add_hex(Hex(0, 1, GameData.tile_information['Habitat']))
+    map.add_hex(Hex(1, 1, GameData.tile_information['Farm']))
 
 
     cocos.director.director.run (cocos.scene.Scene (map ) )
