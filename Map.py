@@ -3,10 +3,12 @@ import GameData
 from cocos.director import director
 
 class Map(cocos.layer.ColorLayer):
+    is_event_handler = True
 
-    def __init__(self):
+    def __init__(self, buildSelectScene):
 
         super( Map, self ).__init__(0xCC, 0x86, 0x61, 0xFF)
+        self.build_select_scene = buildSelectScene
 
         self.hexes = []
 
@@ -29,6 +31,9 @@ class Map(cocos.layer.ColorLayer):
                 result[key] = v + value
         return result
 
+    def on_most_press(self, x, y, buttons, modifiers):
+        cocos.director.director.run(self.build_select_scene)
+
 class Hex(object):
 
     def __init__(self, x, y, map):
@@ -49,11 +54,12 @@ class Hex(object):
         sprite.position = x, y
         return sprite
 
-class MouseDisplay(cocos.layer.Layer)
-    is_event_handler = True
-    def on_mouse_press(self, x, y, buttons, modifiers):
-        self.posx, self.posy = director.get_virtual_coordinates(x,y)
-        print(x,y)
+#class MouseDisplay(cocos.layer.Layer)
+#    is_event_handler = True
+
+# def on_mouse_press(self, x, y, buttons, modifiers):
+        # self.posx, self.posy = director.get_virtual_coordinates(x,y)
+        # print(x,y)
 
 if __name__ == "__main__":
     cocos.director.director.init()
