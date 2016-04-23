@@ -116,16 +116,8 @@ class GameData(object):
         for key, value in self.resources.iteritems():
             print('{key}:{value}'.format(key=key, value=value))
 
-    def addHabitatMaterial(self, n):
-        self.habitatmaterial = self.habitatmaterial + int(n)
-
-    def getHabitatMaterial(self):
-        return self.habitatmaterial
-
-    def getHabitats(self):
-        return self.habitats
-
-    def makeHabitats(self, number):
-        n = int(number)
-        self.habitatmaterial = self.habitatmaterial - n*self.habitatcost
-        self.habitats = self.habitats + n
+    def get_resources(self):
+        string = ""
+        for key, value in self.resources.iteritems():
+            string = string + key + ":" + str(value) + " "
+        return string

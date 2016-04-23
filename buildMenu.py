@@ -18,8 +18,9 @@ import Map
 
 class BuildSelectScene(cocos.layer.ColorLayer):
 
-    def __init__(self):
+    def __init__(self, gamedata):
         super(BuildSelectScene, self).__init__(230,149,18,255) #constructor
+        self.gamedata = gamedata
 
         # a cocos.text.Label is a wrapper of pyglet.text.Label
         # with the benefit of being a cocosnode
@@ -30,6 +31,14 @@ class BuildSelectScene(cocos.layer.ColorLayer):
         
         label.position = 320, 240
         self.add(label)
+
+        resource_label = cocos.text.Label(self.gamedata.get_resources(),
+                                          font_name='Times New Roman',
+                                          font_size=32,
+                                          anchor_x='center', anchor_y='center')
+        resource_label.position = 320, 120
+        self.add(resource_label)
+
 
 class BuildMenu(cocos.menu.Menu):
     def __init__(self, buildingInfo_scene):
