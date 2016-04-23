@@ -14,10 +14,10 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))
 import cocos
 
 
-class BuildSelectScene(cocos.layer.Layer):
+class BuildSelectScene(cocos.layer.ColorLayer):
 
     def __init__(self):
-        super(BuildSelectScene, self).__init__() #constructor
+        super(BuildSelectScene, self).__init__(64,64,224,255) #constructor
 
         # a cocos.text.Label is a wrapper of pyglet.text.Label
         # with the benefit of being a cocosnode
@@ -29,25 +29,41 @@ class BuildSelectScene(cocos.layer.Layer):
         label.position = 320, 240
         self.add(label)
 
-        label2 = cocos.text.Label('A new kind of label',
-                                  font_name='Times New Roman',
-                                  font_size=40,
-                                  anchor_x='left', anchor_y='center')
-        label2.position = 280, 170
-        self.add(label2)
+    CCMenuItem = cocos.menu.MenuItem   # itemFromNormalImage:@"ButtonStar.png" selectedImage:@"ButtonStarSel.png" 
+    c
+  target:self selector:@selector(starButtonTapped:)]
+    starMenuItem.position = ccp(60, 60)
+    CCMenu *starMenu = [CCMenu menuWithItems:starMenuItem, nil]
+    starMenu.position = CGPointZero;
+    [self addChild:starMenu]
+
+class BuildInfoScene(cocos.layer.ColorLayer):
+
+    def __init__(self):
+        super(BuildInfoScene, self).__init__(64,64,224,255) #constructor
+
+        label = cocos.text.Label('Hello, World!',
+                                 font_name='Times New Roman',
+                                 font_size=32,
+                                 anchor_x='center', anchor_y='center')
+        
+        label.position = 320, 240
+        self.add(label)
         
 if __name__ == "__main__":
     # director init takes the same arguments as pyglet.window
     cocos.director.director.init()
 
-    # We create a new layer, an instance of HelloWorld
-    hello_layer = HelloWorld()
+    # Create the Layers ready to create Scenes from
+    buildSelect_layer = BuildSelectScene()
+    buildInfo_layer = BuildInfoScene()
 
-    # A scene that contains the layer hello_layer
-    main_scene = cocos.scene.Scene(hello_layer)
+    # Create the scenes
+    buildingSelect_scene = cocos.scene.Scene(buildSelect_layer)
+    buildingInfo_scene = cocos.scene.Scene(buildInfo_layer)
 
     # And now, start the application, starting with main_scene
-    cocos.director.director.run(main_scene)
+    cocos.director.director.run(buildingSelect_scene)
 
     # or you could have written, without so many comments:
     #      director.run( cocos.scene.Scene( HelloWorld() ) )
