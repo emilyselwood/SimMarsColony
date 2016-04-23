@@ -5,22 +5,22 @@ from cocos.scene import Scene
 from cocos import tiles
 
 import pyglet
-from pyglet.window import key
 
 class MainMap(cocos.layer.ScrollingManager):
 
-    def __init__(self):
+    is_event_handler = True
+
+
+    def __init__(self, buildSelectScene):
+
 
         super( MainMap, self ).__init__()
         self.map_loaded = tiles.load('background_map.tmx')
 
         layer = self.map_loaded['tile_layer_1']
         #layer.cells[1][1].tile.image = pyglet.image.load('assets/tile_oxygen.png')
-        print("{map_width}:{map_height}".format(map_width = len(self.map_loaded['tile_layer_1'].cells), map_height = len(self.map_loaded['tile_layer_1'].cells[0])))
 
-        for x in layer.cells:
-            for cell in x:
-                print("size:{width}:{image}".format(width = cell.center, image = cell.tile.image))
+        self.build_select_scene = buildSelectScene
 
         self.add(self.map_loaded['tile_layer_1'], z = 0)
         self.hexes = []
@@ -45,6 +45,11 @@ class MainMap(cocos.layer.ScrollingManager):
                 v = result.get(key, 0)
                 result[key] = v + value
         return result
+
+    def on_mouse_press(self, x, y, buttons, modifiers):
+        cocos.director.director.run(self.build_select_scene)
+
+
 class Hex(object):
 
     def __init__(self, x, y, map):
@@ -71,6 +76,7 @@ class MouseDisplay(cocos.layer.Layer):
         self.posx, self.posy = director.get_virtual_coordinates(x,y)
         print(x,y)
 
+
 if __name__ == "__main__":
     director.init(width=800, height=600, autoscale=False, resizable=True)
 
@@ -92,8 +98,5 @@ if __name__ == "__main__":
     game_data.produce()
     game_data.print_resources()
 
-
-    keyboard = key.KeyStateHandler()
-    director.window.push_handlers(keyboard)
 
     director.run (Scene (map ) )

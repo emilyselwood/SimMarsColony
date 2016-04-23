@@ -1,7 +1,7 @@
 import Map
 tile_information = {
     'Farm': {
-        'image': 'assets/hexagon-filled2.png',
+        'image': 'assets/tile_farm.png',
         'build': {
             'energy': 1,
             'food': 1,
@@ -12,6 +12,19 @@ tile_information = {
         'produce': {
             'food': 3,
         }
+    },
+    'LaunchPad' : {
+        'image' : 'assets/hexagon-filled2.png',
+        'build': {
+            'energy': 1,
+            'food': 1,
+        },
+        'consume': {
+            'water': 1,
+        },
+        'produce': {
+            'food': 3,
+    }
     },
     'Habitat': {
         'image': 'assets/hexagon-filled2.png',
@@ -42,13 +55,19 @@ class GameData(object):
         self.people = people
         self.map = map
 
+    def get_build_information(self):
+        v = []
+        for s in tile_information:
+            v.append(tile_information['Habitat'])
+        return v
+
     def build(self, type, x, y):
         hex = Map.Hex(x, y, tile_information[type])
         # check we have the right materials available to build
         if not self.have_enough_stuff(hex.build):
             return False
         # TODO: check the grid is alowed to be built on.
-        # reduce amout of resources
+        # reduce amount of resources
         self.subtract_stuff(hex.build)
 
         # add tile to map
@@ -62,7 +81,7 @@ class GameData(object):
             v = result.get(key, 0)
             result[key] = v + value
 
-        # consue for people as well
+        # consume for people as well
 
         # check we have enough stuff to survive if not ???
         if not self.have_enough_stuff(result):
@@ -74,11 +93,13 @@ class GameData(object):
     def buildCost(self, type):
         building_type = tile_information[type]
         build_details = building_type['build']
-        build_energy = build_details['energy']
-        build_food = build_details['food']
-        string = "Build cost is " + str(build_energy) + " energy \n and " + str(0) + " water \n and " + str(build_food) + "food"
+        build_energy = build_details.get('energy', 0)
+        build_food = build_details.get('food', 0)
+
+        build_water = build_details.get('water', 0)
+        string = "Build cost is %s energy \n and %s water \n and %s food" % (build_energy, build_water, build_food)
         return string
-    
+
     def getMap(self):
         return self.map
 
