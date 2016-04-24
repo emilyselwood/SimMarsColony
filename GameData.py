@@ -105,6 +105,13 @@ class GameData(object):
             'oxygen' : oxygen,
             'materials' : materials
         }
+        self.rocket_payload = {
+            'food' : 2,
+            'materials' : 2,
+            'energy': 1,
+            'oxygen' : 2,
+            'water' : 2,
+        }
         self.people = people
         self.map = map
         self.map.addGameData(self)
@@ -160,7 +167,7 @@ class GameData(object):
     def buildCost(self, type):
         building_type = tile_information[type]
         string = ""
-        for key, value in tile_information[type].iteritems():
+        for key, value in building_type['build'].iteritems():
             string = string + key + " : " + str(value) + " "
         return string
 
@@ -169,6 +176,10 @@ class GameData(object):
 
     def produce(self):
         for key, value in self.map.gained_from_hexes().iteritems():
+            self.resources[key] = self.resources[key] + value
+
+    def rocket_arrives(self):
+        for key, value in self.rocket_payload.iteritems():
             self.resources[key] = self.resources[key] + value
 
     def have_enough_stuff(self, to_remove):

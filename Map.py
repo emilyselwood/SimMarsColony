@@ -54,6 +54,7 @@ class MainMap(cocos.layer.ScrollingManager):
     def on_mouse_press(self, x, y, buttons, modifiers):
         self.game_data.consume()
         self.game_data.produce()
+        self.game_data.rocket_arrives()
         buildingInfo_scene = cocos.scene.Scene(buildMenu.BuildInfoScene(self.game_data))
         building_select_layer = buildMenu.BuildSelectScene(self.game_data)
         buildingSelect_scene = cocos.scene.Scene(building_select_layer)
