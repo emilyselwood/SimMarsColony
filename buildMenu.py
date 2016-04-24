@@ -27,9 +27,9 @@ class BuildSelectScene(cocos.layer.ColorLayer):
         label = cocos.text.Label('Select Building you would like:',
                                  font_name='Times New Roman',
                                  font_size=32,
-                                 anchor_x='center', anchor_y='center')
+                                 anchor_x='center', anchor_y='top')
 
-        label.position = 320, 460
+        label.position = 300, 600
 
         self.add(label)
 
