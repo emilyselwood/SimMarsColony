@@ -39,11 +39,18 @@ class BuildSelectScene(cocos.layer.ColorLayer):
 
 
     def update_resource_info(self):
-        self.resource_label = cocos.text.Label(self.gamedata.get_resources(),
+        resource_dict = self.gamedata.get_resources()
+        string = ""
+        for key, v in resource_dict.iteritems():
+            string = string + key + " : " + str(v) + "\n"
+        
+        self.resource_label = cocos.text.Label(string,
                                           font_name='Times New Roman',
                                           font_size=22,
+                                          multiline = True,
+                                          width = 300,
                                           anchor_x='center', anchor_y='center')
-        self.resource_label.position = 320, 20
+        self.resource_label.position = 400, 300
 
 
 class BuildMenu(cocos.menu.Menu):
@@ -58,6 +65,7 @@ class BuildMenu(cocos.menu.Menu):
             allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick,k))
 
         self.create_menu(allMenuItems)
+        self.position = -100, 0
 
 
     def onButtonClick(self,buildingType):

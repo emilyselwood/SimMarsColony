@@ -205,7 +205,4 @@ class GameData(object):
 
 
     def get_resources(self):
-        string = ""
-        for key, value in self.resources.iteritems():
-            string = string + key + ":" + str(value) + " "
-        return string
+        return self.resources
