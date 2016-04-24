@@ -3,66 +3,107 @@ tile_information = {
     'Farm': {
         'image': 'assets/tile_farm.png',
         'build': {
-            'energy': 1,
+            'materials': 1,
             'food': 1,
         },
         'consume': {
             'water': 1,
+            'energy': 1,
         },
         'produce': {
-            'food': 3,
+            'food': 1,
+            'oxygen': 1,
         }
     },
     'LaunchPad' : {
         'image' : 'assets/tile_landingdeck.png',
         'build': {
-            'energy': 1,
-            'food': 1,
+            'energy': 0,
+            'food': 0,
         },
         'consume': {
-            'water': 1,
+            'water': 0,
         },
         'produce': {
-            'water': 1,
+            'water': 0,
     }
     },
     'Habitat': {
         'image': 'assets/tile_habitat.png',
         'build': {
-            'energy': 1,
-            'food': 1,
+            'materials': 1,
         },
         'consume': {
-            'food': 1,
+            'food': 0,
         },
         'produce': {
-            'energy': 2,
+            'energy': 0,
         }
 
     },
     'CommsTower': {
         'image': 'assets/tile_comms.png',
         'build': {
-            'energy': 1,
-            'food': 1,
+            'materials': 1,
         },
         'consume': {
-            'energy': 2,
+            'energy': 1,
         },
         'produce': {
-            'energy': 2,
+            'energy': 0,
         }
 
+    },
+    'MiningDome' : {
+        'image': 'assets/hexagon-filled2.png',
+        'build': {
+            'materials': 1,
+         },
+        'consume': {
+            'energy': 1,
+        },
+        'produce': {
+            'materials': 1,
+            'water': 1,
+        }
+    },
+    'SolarFarm' : {
+        'image': 'assets/tile_solar.png',
+        'build': {
+            'materials': 1,
+        },
+        'consume': {
+            'energy': 0,
+        },
+        'produce': {
+            'energy': 1,
+        }
+    },
+    'OxygenPlant' : {
+        'image': 'assets/tile_oxygen.png',
+        'build': {
+            'materials': 1,
+        },
+        'consume': {
+            'water': 2,
+            'energy': 1,
+        },
+        'produce': {
+            'oxygen': 2,
+        }
     }
+
 }
 
 class GameData(object):
 
-    def __init__(self, energy, water, food, people, map):
+    def __init__(self, energy, water, food, oxygen, materials, people, map):
         self.resources = {
             'energy': energy,
             'water': water,
-            'food': food
+            'food': food,
+            'oxygen' : oxygen,
+            'materials' : materials
         }
         self.people = people
         self.map = map
