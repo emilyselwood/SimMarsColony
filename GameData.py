@@ -67,8 +67,10 @@ class GameData(object):
         self.people = people
         self.map = map
         self.map.addGameData(self)
-        self.current_x = 1
+        self.current_x = -1
         self.current_y = 0
+        self.direction_x = 0
+        self.direction_y = -1
 
     def get_build_information(self):
         v = {}
@@ -77,12 +79,12 @@ class GameData(object):
         return v
 
     def build(self, type):
-        hex = Map.Hex(self.current_x, self.current_y, tile_information[type])
+        hex = Map.Hex(10 + self.current_x, 7 + self.current_y, tile_information[type])
         self.advance_coordinates()
         # check we have the right materials available to build
         if not self.have_enough_stuff(hex.build):
             return False
-        # TODO: check the grid is alowed to be built on.
+
         # reduce amount of resources
         self.subtract_stuff(hex.build)
 
@@ -91,13 +93,19 @@ class GameData(object):
         return True
 
     def advance_coordinates(self):
-        if (self.current_x == 1):
-            if (self.current_y == 0):
-                self.current_y = 1
-                return True
-            if (self.current_y == 1):
-                self.current_x = 0
-                return True
+
+        #if (c._1 == c._2 || (c._1 > 0 && (-c._1) == c._2) || (c._1 < 0 && c._1  == (-c._2))) {
+        if self.current_x == self.current_y or ( self.current_x > 0 and -self.current_x == self.current_y) or (self.current_x < 0 and self.current_x == -self.current_y):
+            self.direction_x = -self.direction_y
+            self.direction_y = self.direction_x
+
+        self.current_x = self.current_x + self.direction_x
+        self.current_y = self.current_y + self.direction_y
+
+        if self.current_y == 0 and self.current_x < 0:
+            self.current_x = self.current_x - 1
+
+        print("current(xy){x}:{y}".format(x = self.current_x, y = self.current_y))
 
 
     def consume(self):
