@@ -7,18 +7,19 @@ from cocos import tiles
 
 import pyglet
 
+
 class MainMap(cocos.layer.ScrollingManager):
 
     is_event_handler = True
 
     def __init__(self, buildSelectScene):
 
-        super( MainMap, self ).__init__()
+        super(MainMap, self).__init__()
         self.build_select_scene = buildSelectScene
 
         self.map_loaded = tiles.load('background_map.tmx')['tile_layer_1']
 
-        self.add(self.map_loaded, z = 0)
+        self.add(self.map_loaded, z=0)
         center = self.map_loaded.cells[10][7].center
         self.map_loaded.set_view(5, 5, 15, 15, 0, 0)
         self.set_focus(center[0], center[1])
