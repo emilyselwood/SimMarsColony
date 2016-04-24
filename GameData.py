@@ -15,8 +15,8 @@ tile_information = {
             'oxygen': 1,
         }
     },
-    'LaunchPad' : {
-        'image' : 'assets/tile_landingdeck.png',
+    'LaunchPad': {
+        'image': 'assets/tile_landingdeck.png',
         'build': {
             'energy': 0,
             'food': 0,
@@ -54,7 +54,7 @@ tile_information = {
         }
 
     },
-    'MiningDome' : {
+    'MiningDome': {
         'image': 'assets/tile_rover.png',
         'build': {
             'materials': 1,
@@ -67,7 +67,7 @@ tile_information = {
             'water': 1,
         }
     },
-    'SolarFarm' : {
+    'SolarFarm': {
         'image': 'assets/tile_solar.png',
         'build': {
             'materials': 1,
@@ -79,7 +79,7 @@ tile_information = {
             'energy': 1,
         }
     },
-    'OxygenPlant' : {
+    'OxygenPlant': {
         'image': 'assets/tile_oxygen.png',
         'build': {
             'materials': 1,
@@ -95,6 +95,7 @@ tile_information = {
 
 }
 
+
 class GameData(object):
 
     def __init__(self, people, map):
@@ -108,10 +109,10 @@ class GameData(object):
         }
         self.rocket_payload = {
             'food' : 2,
-            'materials' : 2,
+            'materials': 2,
             'energy': 1,
             'oxygen' : 2,
-            'water' : 2,
+            'water': 2,
         }
         self.rocket_arrives()
         self.people = people
@@ -129,9 +130,10 @@ class GameData(object):
             v[k] = value
         return v
 
-    def build(self, type):
-        hex = Map.Hex(self.current_x, self.current_y, tile_information[type])
-        self.advance_coordinates()
+    def build(self, type, x, y):
+        print("GameData.build({type},{x}:{y})".format(type = type, x = x, y = x))
+        hex = Map.Hex(x, y, tile_information[type])
+        #self.advance_coordinates()
         # check we have the right materials available to build
         if not self.have_enough_stuff(hex.build):
             return False

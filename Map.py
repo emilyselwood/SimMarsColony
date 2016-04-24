@@ -7,18 +7,19 @@ from cocos import tiles
 
 import pyglet
 
+
 class MainMap(cocos.layer.ScrollingManager):
 
     is_event_handler = True
 
     def __init__(self, buildSelectScene):
 
-        super( MainMap, self ).__init__()
+        super(MainMap, self).__init__()
         self.build_select_scene = buildSelectScene
 
         self.map_loaded = tiles.load('background_map.tmx')['tile_layer_1']
 
-        self.add(self.map_loaded, z = 0)
+        self.add(self.map_loaded, z=0)
         center = self.map_loaded.cells[10][7].center
         self.map_loaded.set_view(5, 5, 15, 15, 0, 0)
         self.set_focus(center[0], center[1])
@@ -52,10 +53,17 @@ class MainMap(cocos.layer.ScrollingManager):
         return result
 
     def on_mouse_press(self, x, y, buttons, modifiers):
+        cord = self.pixel_from_screen(x, y)
+        i, j = self.map_loaded.get_key_at_pixel(cord[0], cord[1])
+        print("map.on_mouse_press({x}:{y} {i}:{j})".format(x = x, y = y, i = i, j = j))
+
+        if (self.map_loaded.cells[i][j].tile.id != 1):
+            return
+
         self.game_data.consume()
         self.game_data.produce()
         self.game_data.rocket_arrives()
-        building_select_layer = buildMenu.BuildSelectScene(self.game_data)
+        building_select_layer = buildMenu.BuildSelectScene(self.game_data, i, j)
         buildingSelect_scene = cocos.scene.Scene(building_select_layer)
         cocos.director.director.run(buildingSelect_scene)
 
@@ -101,4 +109,3 @@ class MouseDisplay(cocos.layer.Layer):
     def on_mouse_press(self, x, y, buttons, modifiers):
         self.posx, self.posy = director.get_virtual_coordinates(x,y)
         print(x,y)
-
