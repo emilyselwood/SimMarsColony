@@ -35,7 +35,7 @@ class BuildSelectScene(cocos.layer.ColorLayer):
 
         self.update_resource_info()
         self.add(self.resource_label)
-        self.add(BuildMenu(cocos.scene.Scene(BuildInfoScene(self.gamedata)), self.gamedata))
+        self.add(BuildMenu(self.gamedata))
 
 
     def update_resource_info(self):
@@ -47,9 +47,8 @@ class BuildSelectScene(cocos.layer.ColorLayer):
 
 
 class BuildMenu(cocos.menu.Menu):
-    def __init__(self, buildingInfo_scene,gamedata):
+    def __init__(self, gamedata):
         super(BuildMenu, self).__init__("Click the apple")
-        self.buildingInfo_scene = buildingInfo_scene
         self.gamedata = gamedata
         #for each building from gamedata create buttons and store in an array
         allMenuItems = []
@@ -64,29 +63,32 @@ class BuildMenu(cocos.menu.Menu):
     def onButtonClick(self,buildingType):
 
         print (buildingType)
-        cocos.director.director.run(self.buildingInfo_scene)
+        self.buildingInfo_scene = BuildInfoScene(self.gamedata, buildingType)
+        cocos.director.director.run(cocos.scene.Scene(self.buildingInfo_scene))
 
 
 class BuildThisMenu(cocos.menu.Menu):
-    def __init__(self, gamedata):
+    def __init__(self, gamedata, buildingType):
         super(BuildThisMenu, self).__init__()
         self.gamedata = gamedata
         self.map = self.gamedata.map
+        self.building_type = buildingType
 
         build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
         self.create_menu([build_button])
 
     def onButtonClick(self):
-        self.gamedata.build('Farm')
+        self.gamedata.build(self.building_type)
         cocos.director.director.run(cocos.scene.Scene(self.map))
 
 class BuildInfoScene(cocos.layer.ColorLayer):
 
-    def __init__(self, gamedata):
+    def __init__(self, gamedata, buildingType):
         super(BuildInfoScene, self).__init__(64,64,224,255) #constructor
         self.gamedata = gamedata
-        gs_string = self.gamedata.buildCost('Farm')
-        self.add(BuildThisMenu(self.gamedata))
+        self.building_type = buildingType
+        gs_string = self.gamedata.buildCost(buildingType)
+        self.add(BuildThisMenu(self.gamedata, buildingType))
 
         label = cocos.text.Label(gs_string,
                                  font_name='Times New Roman',
