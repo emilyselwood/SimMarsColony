@@ -63,7 +63,19 @@ class MainMap(cocos.layer.ScrollingManager):
     def addGameData(self, gamedata):
         self.game_data = gamedata
 
+    def get_neighbors(self, x, y):
 
+        center_cell = self.map_loaded.cells[x][y]
+        result = []
+
+        result.append(self.map_loaded.get_neighbor(center_cell, self.map_loaded.UP))
+        result.append(self.map_loaded.get_neighbor(center_cell, self.map_loaded.DOWN))
+        result.append(self.map_loaded.get_neighbor(center_cell, self.map_loaded.UP_LEFT))
+        result.append(self.map_loaded.get_neighbor(center_cell, self.map_loaded.UP_RIGHT))
+        result.append(self.map_loaded.get_neighbor(center_cell, self.map_loaded.DOWN_LEFT))
+        result.append(self.map_loaded.get_neighbor(center_cell, self.map_loaded.DOWN_RIGHT))
+
+        return [(r.i, r.j) for r in result if self.map_loaded.cells[r.i][r.j].tile.id == 1]
 
 class Hex(object):
 
