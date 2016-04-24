@@ -115,8 +115,11 @@ class GameData(object):
         self.people = people
         self.map = map
         self.map.addGameData(self)
-        self.current_x = 1
-        self.current_y = 0
+
+        self.position_index = 0
+        self.cell_list = self.map.get_neighbors(10, 7)
+        self.current_x = self.cell_list[self.position_index][0]
+        self.current_y = self.cell_list[self.position_index][1]
 
     def get_build_information(self):
         v = {}
@@ -130,7 +133,7 @@ class GameData(object):
         # check we have the right materials available to build
         if not self.have_enough_stuff(hex.build):
             return False
-        # TODO: check the grid is alowed to be built on.
+
         # reduce amount of resources
         self.subtract_stuff(hex.build)
 
@@ -139,13 +142,16 @@ class GameData(object):
         return True
 
     def advance_coordinates(self):
-        if (self.current_x == 1):
-            if (self.current_y == 0):
-                self.current_y = 1
-                return True
-            if (self.current_y == 1):
-                self.current_x = 0
-                return True
+
+        self.position_index = self.position_index + 1
+        if self.position_index >= len(self.cell_list):
+            self.cell_list = self.map.get_neighbors(self.current_x, self.current_y)
+            self.position_index = 0
+
+        self.current_x = self.cell_list[self.position_index][0]
+        self.current_y = self.cell_list[self.position_index][1]
+
+        print("current(xy){x}:{y}".format(x = self.current_x, y = self.current_y))
 
 
     def consume(self):
