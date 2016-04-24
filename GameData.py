@@ -128,9 +128,10 @@ class GameData(object):
             v[k] = value
         return v
 
-    def build(self, type):
-        hex = Map.Hex(self.current_x, self.current_y, tile_information[type])
-        self.advance_coordinates()
+    def build(self, type, x, y):
+        print("GameData.build({type},{x}:{y})".format(type = type, x = x, y = x))
+        hex = Map.Hex(x, y, tile_information[type])
+        #self.advance_coordinates()
         # check we have the right materials available to build
         if not self.have_enough_stuff(hex.build):
             return False
