@@ -56,14 +56,14 @@ class BuildMenu(cocos.menu.Menu):
 
         #
         for k, i in GameData.GameData.get_build_information(gamedata).iteritems():
-            allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick))
-
+            allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick,k))
 
         self.create_menu(allMenuItems)
 
 
-    def onButtonClick(self):
-        # self.building_info_scene.set_building_type('Farm')
+    def onButtonClick(self,buildingType):
+
+        print (buildingType)
         cocos.director.director.run(self.buildingInfo_scene)
 
 
