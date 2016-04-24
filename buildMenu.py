@@ -24,12 +24,12 @@ class BuildSelectScene(cocos.layer.ColorLayer):
 
         # a cocos.text.Label is a wrapper of pyglet.text.Label
         # with the benefit of being a cocosnode
-        label = cocos.text.Label('Scene 1',
+        label = cocos.text.Label('Select Building you would like:',
                                  font_name='Times New Roman',
                                  font_size=32,
                                  anchor_x='center', anchor_y='center')
 
-        label.position = 320, 140
+        label.position = 320, 460
 
         self.add(label)
 
@@ -41,14 +41,14 @@ class BuildSelectScene(cocos.layer.ColorLayer):
     def update_resource_info(self):
         self.resource_label = cocos.text.Label(self.gamedata.get_resources(),
                                           font_name='Times New Roman',
-                                          font_size=32,
+                                          font_size=22,
                                           anchor_x='center', anchor_y='center')
-        self.resource_label.position = 320, 120
+        self.resource_label.position = 320, 20
 
 
 class BuildMenu(cocos.menu.Menu):
     def __init__(self, gamedata):
-        super(BuildMenu, self).__init__("Click the apple")
+        super(BuildMenu, self).__init__()
         self.gamedata = gamedata
         #for each building from gamedata create buttons and store in an array
         allMenuItems = []
