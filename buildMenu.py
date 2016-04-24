@@ -76,6 +76,7 @@ class BuildThisMenu(cocos.menu.Menu):
 
         build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
         self.create_menu([build_button])
+        self.position = 0, -100
 
     def onButtonClick(self):
         self.gamedata.build(self.building_type)
@@ -87,8 +88,17 @@ class BuildInfoScene(cocos.layer.ColorLayer):
         super(BuildInfoScene, self).__init__(64,64,224,255) #constructor
         self.gamedata = gamedata
         self.building_type = buildingType
-        gs_string = self.gamedata.buildCost(buildingType)
+        
+        building_name = self.building_type
+        
+        gs_string = "Build cost is " + self.gamedata.buildCost(buildingType)
         self.add(BuildThisMenu(self.gamedata, buildingType))
+        
+        name_label = cocos.text.Label("Build " + building_name,
+                                      font_name='Times New Roman',
+                                      font_size=12,
+                                      anchor_x='center', anchor_y='center')
+        name_label.position = 320, 400
 
         label = cocos.text.Label(gs_string,
                                  font_name='Times New Roman',
@@ -96,4 +106,5 @@ class BuildInfoScene(cocos.layer.ColorLayer):
                                  anchor_x='center', anchor_y='center')
 
         label.position = 320, 240
+        self.add(name_label)
         self.add(label)
