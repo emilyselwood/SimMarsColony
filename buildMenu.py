@@ -56,9 +56,8 @@ class BuildMenu(cocos.menu.Menu):
 
         #
         for k, i in GameData.GameData.get_build_information(gamedata).iteritems():
-            print(i)
             allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick))
-            
+
 
         self.create_menu(allMenuItems)
 
