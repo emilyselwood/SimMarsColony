@@ -97,13 +97,14 @@ tile_information = {
 
 class GameData(object):
 
-    def __init__(self, energy, water, food, oxygen, materials, people, map):
+    def __init__(self, people, map):
         self.resources = {
-            'energy': energy,
-            'water': water,
-            'food': food,
-            'oxygen' : oxygen,
-            'materials' : materials
+            'food' : 0,
+            'materials' : 0,
+            'energy': 0,
+            'oxygen' : 0,
+            'water' : 0,
+
         }
         self.rocket_payload = {
             'food' : 2,
@@ -112,6 +113,7 @@ class GameData(object):
             'oxygen' : 2,
             'water' : 2,
         }
+        self.rocket_arrives()
         self.people = people
         self.map = map
         self.map.addGameData(self)

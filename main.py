@@ -9,7 +9,7 @@ cocos.director.director.init(width=800, height=600, autoscale=True, resizable=Tr
 
 map = Map.MainMap(None)
 
-game_data = GameData.GameData(10, 10, 10, 10, 10, 10, map)
+game_data = GameData.GameData(10, map)
 
 
 building_select_layer = buildMenu.BuildSelectScene(game_data)
