@@ -52,10 +52,12 @@ class BuildMenu(cocos.menu.Menu):
         self.gamedata = gamedata
         #for each building from gamedata create buttons and store in an array
         allMenuItems = []
-
+        self.font_item["font_size"]=20
+        self.font_item_selected["font_size"]=22
         #
         for k, i in GameData.GameData.get_build_information(gamedata).iteritems():
             allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick,k))
+            allMenuItems.append(cocos.menu.MenuItem(k, self.onButtonClick,k))
 
         self.create_menu(allMenuItems)
 
