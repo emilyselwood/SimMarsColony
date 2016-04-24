@@ -74,8 +74,8 @@ class BuildThisMenu(cocos.menu.Menu):
         self.map = self.gamedata.map
         self.building_type = buildingType
 
-        build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
-        self.create_menu([build_button])
+        buildButton = cocos.menu.MenuItem('Build', self.onButtonClick)
+        self.create_menu([buildButton])
 
     def onButtonClick(self):
         self.gamedata.build(self.building_type)
@@ -95,5 +95,5 @@ class BuildInfoScene(cocos.layer.ColorLayer):
                                  font_size=12,
                                  anchor_x='center', anchor_y='center')
 
-        label.position = 320, 240
+        label.position = 320, 140
         self.add(label)
