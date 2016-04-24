@@ -55,7 +55,7 @@ tile_information = {
 
     },
     'MiningDome' : {
-        'image': 'assets/hexagon-filled2.png',
+        'image': 'assets/tile_rover.png',
         'build': {
             'materials': 1,
          },
