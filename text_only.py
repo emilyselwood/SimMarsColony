@@ -9,5 +9,5 @@ while 1:
     hconsume = raw_input("How Much Habitat Material do you want to order?")
     gamedata.addHabitatMaterial(hconsume)
     tiles = raw_input("How many habitats do you want to create?")
-    gamedata.makeHabitats(tiles);
+    gamedata.makeHabitats(tiles)
     gamedata.produce()

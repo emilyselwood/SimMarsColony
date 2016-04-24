@@ -18,9 +18,6 @@ buildingSelect_scene = cocos.scene.Scene(building_select_layer)
 map.add_hex(Map.Hex(10, 7, GameData.tile_information['LaunchPad']))
 map.addBSS(building_select_layer, buildingSelect_scene)
 
-
-
-
 # And now, start the application, starting with main_scene
 cocos.director.director.run(buildingSelect_scene)
 
