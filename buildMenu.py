@@ -15,28 +15,27 @@ import cocos
 import GameData
 import Map
 
+
 class BuildSelectScene(cocos.layer.ColorLayer):
 
     def __init__(self, gamedata):
-        super(BuildSelectScene, self).__init__(230,149,18,255) #constructor
+        super(BuildSelectScene, self).__init__(230, 149, 18, 255)  # constructor
         self.gamedata = gamedata
-
 
         # a cocos.text.Label is a wrapper of pyglet.text.Label
         # with the benefit of being a cocosnode
         label = cocos.text.Label('Select Building you would like:',
                                  font_name='Times New Roman',
                                  font_size=32,
-                                 anchor_x='center', anchor_y='center')
+                                 anchor_x='center', anchor_y='top')
 
-        label.position = 320, 460
+        label.position = 300, 600
 
         self.add(label)
 
         self.update_resource_info()
         self.add(self.resource_label)
         self.add(BuildMenu(self.gamedata))
-
 
     def update_resource_info(self):
         self.resource_label = cocos.text.Label(self.gamedata.get_resources(),
@@ -52,10 +51,12 @@ class BuildMenu(cocos.menu.Menu):
         self.gamedata = gamedata
         #for each building from gamedata create buttons and store in an array
         allMenuItems = []
-
+        self.font_item["font_size"]=20
+        self.font_item_selected["font_size"] = 22
         #
         for k, i in GameData.GameData.get_build_information(gamedata).iteritems():
-            allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick,k))
+            allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick, k))
+            allMenuItems.append(cocos.menu.MenuItem(k, self.onButtonClick,k))
 
         self.create_menu(allMenuItems)
 
@@ -74,8 +75,8 @@ class BuildThisMenu(cocos.menu.Menu):
         self.map = self.gamedata.map
         self.building_type = buildingType
 
-        build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
-        self.create_menu([build_button])
+        buildButton = cocos.menu.MenuItem('Build', self.onButtonClick)
+        self.create_menu([buildButton])
 
     def onButtonClick(self):
         self.gamedata.build(self.building_type)
@@ -95,5 +96,5 @@ class BuildInfoScene(cocos.layer.ColorLayer):
                                  font_size=12,
                                  anchor_x='center', anchor_y='center')
 
-        label.position = 320, 240
+        label.position = 320, 140
         self.add(label)
