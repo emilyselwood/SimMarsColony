@@ -2,6 +2,11 @@
 
 Space apps 2016 project at Exeter
 
+## Documentation
+
+   * Space Apps Challenge [Project Page](https://2016.spaceappschallenge.org/challenges/mars/simspace/projects/sim-mars-colony)
+   * Official Game [Rules](https://docs.google.com/document/d/1UbyTxflaE_qqUW7bQZTT9rddVc0G-lV7AoIDDXEdHVw/)
+   * Project [Presentation](https://docs.google.com/presentation/d/10X-SpMQX23XyvBrc62rKG3asaTZKMDbjA-ci8Or-NvA/)
 
 ## Locations
 

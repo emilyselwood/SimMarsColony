@@ -29,7 +29,7 @@ class BuildSelectScene(cocos.layer.ColorLayer):
                                  font_size=32,
                                  anchor_x='center', anchor_y='center')
 
-        label.position = 320, 460
+        label.position = 320, 560
 
         self.add(label)
 
@@ -50,7 +50,7 @@ class BuildSelectScene(cocos.layer.ColorLayer):
                                           multiline = True,
                                           width = 300,
                                           anchor_x='center', anchor_y='center')
-        self.resource_label.position = 400, 300
+        self.resource_label.position = 500, 300
 
 
 class BuildMenu(cocos.menu.Menu):
@@ -65,7 +65,7 @@ class BuildMenu(cocos.menu.Menu):
             allMenuItems.append(cocos.menu.ImageMenuItem(i['image'], self.onButtonClick,k))
 
         self.create_menu(allMenuItems)
-        self.position = -100, 0
+        self.position = -200, 0
 
 
     def onButtonClick(self,buildingType):
@@ -84,7 +84,7 @@ class BuildThisMenu(cocos.menu.Menu):
 
         build_button = cocos.menu.MenuItem('Build', self.onButtonClick)
         self.create_menu([build_button])
-        self.position = 0, -100
+        self.position = 200, -200
 
     def onButtonClick(self):
         self.gamedata.build(self.building_type)
@@ -104,9 +104,9 @@ class BuildInfoScene(cocos.layer.ColorLayer):
         
         name_label = cocos.text.Label("Build " + building_name,
                                       font_name='Times New Roman',
-                                      font_size=12,
+                                      font_size=32,
                                       anchor_x='center', anchor_y='center')
-        name_label.position = 320, 400
+        name_label.position = 320, 500
 
         label = cocos.text.Label(gs_string,
                                  font_name='Times New Roman',
