@@ -15,8 +15,8 @@ tile_information = {
             'oxygen': 1,
         }
     },
-    'LaunchPad' : {
-        'image' : 'assets/tile_landingdeck.png',
+    'LaunchPad': {
+        'image': 'assets/tile_landingdeck.png',
         'build': {
             'energy': 0,
             'food': 0,
@@ -54,7 +54,7 @@ tile_information = {
         }
 
     },
-    'MiningDome' : {
+    'MiningDome': {
         'image': 'assets/tile_rover.png',
         'build': {
             'materials': 1,
@@ -67,7 +67,7 @@ tile_information = {
             'water': 1,
         }
     },
-    'SolarFarm' : {
+    'SolarFarm': {
         'image': 'assets/tile_solar.png',
         'build': {
             'materials': 1,
@@ -79,7 +79,7 @@ tile_information = {
             'energy': 1,
         }
     },
-    'OxygenPlant' : {
+    'OxygenPlant': {
         'image': 'assets/tile_oxygen.png',
         'build': {
             'materials': 1,
@@ -95,6 +95,7 @@ tile_information = {
 
 }
 
+
 class GameData(object):
 
     def __init__(self, energy, water, food, oxygen, materials, people, map):
@@ -102,15 +103,15 @@ class GameData(object):
             'energy': energy,
             'water': water,
             'food': food,
-            'oxygen' : oxygen,
-            'materials' : materials
+            'oxygen': oxygen,
+            'materials': materials
         }
         self.rocket_payload = {
             'food' : 2,
-            'materials' : 2,
+            'materials': 2,
             'energy': 1,
             'oxygen' : 2,
-            'water' : 2,
+            'water': 2,
         }
         self.people = people
         self.map = map
